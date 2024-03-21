@@ -9,13 +9,14 @@ const blogsSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
-    numberOfComments: {
-      type: Number,
-      default: 0,
-    },
   },
   { timestamps: true }
 );
 
 const Blogs = mongoose.model("Blogs", blogsSchema);
 module.exports = Blogs;
+
+// numberOfComments: {
+//       type: Number,
+//       default: 0,
+//     },

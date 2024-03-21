@@ -1,9 +1,13 @@
 //services
+const blogService = require("../services/blogs.service");
 
 const newBlog = async (req, res) => {
   try {
-    const blogData = req.body;
-    const blog = await "service".new(blogData);
+    const { text } = req.body;
+    const Id = req.user.id;
+    const blogData = { text: text, userId: Id };
+
+    const blog = await blogService.newBlog(blogData);
     res.status(201).json({ message: "blogs posted succesfully", blog });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -13,7 +17,7 @@ const newBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
   try {
     const blogId = req.params.id;
-    const blog = await "service".remove(blogId);
+    const blog = await blogService.remove(blogId);
     res
       .status(201)
       .json({ message: "blog has been deleted successfully", blog });
@@ -25,7 +29,8 @@ const deleteBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const blogId = req.params.id;
-    const blog = await "service".update(blogId);
+    const updateData = req.body;
+    const blog = await blogService.update(blogId, updateData);
     res
       .status(201)
       .json({ message: "blog has been updated successfully", blog });
@@ -36,11 +41,13 @@ const updateBlog = async (req, res) => {
 
 const getAllBlogs = async (req, res) => {
   try {
-    const fetchALl = await "service".getAll();
+    const fetchALl = await blogService.getAll();
     res
       .status(200)
-      .json({ message: "blog has been deleted successfully", fetchALl });
+      .json({ message: "blog has been fetched successfully", fetchALl });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+module.exports = { getAllBlogs, updateBlog, deleteBlog, newBlog };

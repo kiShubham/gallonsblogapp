@@ -1,9 +1,10 @@
 //services
+const authServices = require("../services/auth.service");
 
 const register = async (req, res) => {
   try {
     const userData = req.body;
-    const user = await "service".new(userData);
+    const user = await authServices.register(userData);
     res
       .status(200)
       .json({ message: "User registered successfully", userId: user._id });
@@ -14,7 +15,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const credentials = req.body;
-    const check = await "service".login(credentials);
+    const check = await authServices.login(credentials);
     res.status(200).json({
       message: "user login successfully",
       token: check.token,
