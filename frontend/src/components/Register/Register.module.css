@@ -1,0 +1,60 @@
+.form {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 100px;
+  align-items: center;
+  /* border: 2px solid black; */
+  padding: 40px;
+  border-radius: 16px;
+
+  font-family: "inter";
+  font-weight: 750;
+  font-size: 40px;
+  letter-spacing: -0.05em;
+  line-height: 0.7em;
+  color: rgb(255, 255, 255, 0.8);
+
+  background: rgb(245, 142, 187);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(245, 142, 187, 1) 0%,
+    rgba(104, 156, 218, 1) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(245, 142, 187, 1) 0%,
+    rgba(104, 156, 218, 1) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(245, 142, 187, 1) 0%,
+    rgba(104, 156, 218, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f58ebb",endColorstr="#689cda",GradientType=1);
+}
+
+.signup_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form Button {
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  background-color: white;
+  font-family: "inter", sans-serif;
+  font-size: 14px;
+  height: 40px;
+  font-weight: 550;
+  color: black;
+  border: none;
+}
+
+.form Button:hover {
+  background-color: rgb(255, 255, 255, 0.5);
+}

@@ -1,0 +1,47 @@
+:root {
+  --color-primary: #34c94b;
+  --color-black: #121212;
+  --color-white: #fff;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+
+html,
+body {
+  background: #c31432; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #240b36,
+    #c31432
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #240b36,
+    #c31432
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* height: 2000px; */
+  background-size: 100% 100%;
+  /* padding: 80px; */
+
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--color-black);
+  overflow-x: hidden;
+  /* border: 5px solid orange; */
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
