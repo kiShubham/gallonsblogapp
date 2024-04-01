@@ -8,6 +8,8 @@ const findUsername = async (id) => {
 
 const newBlog = async (data) => {
   try {
+    console.log("services");
+
     const username = await findUsername(data.userId);
 
     const blog = await Blogs.create({ ...data, username });

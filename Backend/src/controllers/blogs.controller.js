@@ -2,12 +2,17 @@
 const blogService = require("../services/blogs.service");
 
 const newBlog = async (req, res) => {
+  console.log("controller");
   try {
+    console.log("controller try");
     const { text } = req.body;
     const Id = req.user.id;
+
     const blogData = { text: text, userId: Id };
 
     const blog = await blogService.newBlog(blogData);
+    console.log(blog);
+    //
     res.status(201).json({ message: "blogs posted succesfully", blog });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -30,6 +35,7 @@ const updateBlog = async (req, res) => {
   try {
     const blogId = req.params.id;
     const updateData = req.body;
+
     const blog = await blogService.update(blogId, updateData);
     res
       .status(201)
@@ -41,10 +47,10 @@ const updateBlog = async (req, res) => {
 
 const getAllBlogs = async (req, res) => {
   try {
-    const fetchALl = await blogService.getAll();
+    const blogData = await blogService.getAll();
     res
       .status(200)
-      .json({ message: "blog has been fetched successfully", fetchALl });
+      .json({ message: "blog has been fetched successfully", blogData });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

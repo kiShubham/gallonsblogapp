@@ -1,17 +1,13 @@
 /* eslint-disable react/prop-types */
 import style from "./Comment.module.css";
 
-const Comment = ({ comments = "a" }) => {
+const Comment = ({ data }) => {
   return (
     <>
-      {comments.length ? (
+      {data ? (
         <div className={style.comment}>
-          <div className={style.commentUser}>Username</div>
-          <div className={style.txt}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Consequatur distinctio obcaecati voluptate totam praesentium
-            debitis.
-          </div>
+          <div className={style.commentUser}>{data.username}</div>
+          <div className={style.txt}>{data.text}</div>
         </div>
       ) : (
         <>be first to comment</>

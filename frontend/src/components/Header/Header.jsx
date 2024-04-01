@@ -1,10 +1,19 @@
 /* eslint-disable react/prop-types */
 import style from "./Header.module.css";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const Header = ({ isLoggedIn }) => {
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const blogNowBtn = () => {
     window.alert("button clicked");
+  };
+  const logoutFn = async () => {
+    localStorage.clear();
+    navigate("/");
+    enqueueSnackbar("User logged out successfully", { variant: "success" });
   };
 
   return (
@@ -20,7 +29,7 @@ const Header = ({ isLoggedIn }) => {
               border: "none",
               color: "black",
             }}
-            onClick={blogNowBtn}
+            onClick={logoutFn}
           >
             Log Out
           </Button>

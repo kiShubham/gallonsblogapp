@@ -22,10 +22,12 @@ const newComment = async (req, res) => {
 const getAllComments = async (req, res) => {
   try {
     const blogId = req.params.blogId;
-    const fetch = await commentServices.getAll(blogId);
+    // console.log(blogId);
+    const commentData = await commentServices.getAll(blogId);
+    // console.log(commentData);
     res.status(200).json({
       message: "fetched all comments of the blog",
-      fetch,
+      commentData,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

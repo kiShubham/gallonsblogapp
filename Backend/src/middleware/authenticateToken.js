@@ -11,7 +11,12 @@ const authenticateToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) res.sendStatus(403);
 
+    console.log(token);
+
     req.user = user;
+    console.log(user);
+    console.log("middleware");
+
     next();
   });
 };

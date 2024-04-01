@@ -1,15 +1,60 @@
+/* eslint-disable no-unused-vars */
 import style from "./BlogPage.module.css";
 import Button from "@mui/material/Button";
-import comment from "../../assets/comment.svg";
-import Comment from "../Comment/Comment";
 import Header from "../Header/Header";
-import { useState } from "react";
-import { TextField } from "@mui/material";
+import { TextareaAutosize } from "@mui/material";
+import Blog from "../Blog/Blog";
+import { fetchAllblogs, postNewBlog } from "../../api/api";
+import { useEffect, useState } from "react";
 
 const BlogPage = () => {
-  const [show, setShow] = useState(true);
-  const showComments = () => {
-    setShow(!show);
+  const [blogArray, setBlogArray] = useState([]);
+
+  const [newBlogTxt, setNewBlogTxt] = useState({
+    text: "",
+  });
+
+  const handleTextInput = (e) => {
+    const { name, value } = e.target;
+    setNewBlogTxt((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const getAllblogs = async () => {
+    try {
+      const res = await fetchAllblogs();
+      return setBlogArray(res.data.blogData);
+      // return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    const callFn = async () => {
+      const fetch = await getAllblogs();
+    };
+    callFn();
+  }, []);
+
+  const newBlog = async () => {
+    try {
+      const data = {
+        text: newBlogTxt.text,
+      };
+      setNewBlogTxt({
+        text: "",
+      });
+      // console.log(data);
+      const res = await postNewBlog(data);
+      // console.log(res);
+      // now fetch all latest posted blogs
+      return await getAllblogs();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const cancelNewBlog = () => {
+    setNewBlogTxt({ text: "" });
   };
 
   return (
@@ -17,71 +62,36 @@ const BlogPage = () => {
       <Header isLoggedIn={true} />
 
       <div className={style.newBlog}>
-        <TextField
-          style={{ width: "100%" }}
-          id="standard-basic"
-          label="add new Blog..."
-          variant="standard"
+        <TextareaAutosize
+          className={style.newBlogTxt}
+          aria-label="empty textarea"
+          placeholder="add new Blog..."
+          minRows={3}
+          name="text"
+          value={newBlogTxt.text}
+          onChange={handleTextInput}
         />
+
         <div className={style.newCommentBtn}>
-          <Button variant="text" style={{ color: "white" }}>
+          <Button
+            variant="text"
+            style={{ color: "white" }}
+            onClick={cancelNewBlog}
+          >
             cancel
           </Button>
           <Button
             variant="contained"
             style={{ backgroundColor: "white", border: "none", color: "black" }}
+            onClick={newBlog}
           >
             post new Blog
           </Button>
         </div>
       </div>
-
-      <div className={style.blog}>
-        <div className={style.username}>username</div>
-        <div className={style.blogTxt}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus
-          delectus nam corrupti? Sed doloremque fugit qui reprehenderit culpa
-          nemo voluptatum. Officiis corrupti vero amet nostrum non accusantium
-          dolore molestiae dignissimos.
-        </div>
-        <div className={style.commentSection}>
-          <div className={style.btns}>
-            <Button className={style.expandComments} onClick={showComments}>
-              {show ? <>❌</> : <img src={comment} alt="comments" />}
-            </Button>
-          </div>
-
-          {show ? (
-            <div className={style.comment_subSection}>
-              <Comment />
-              <Comment />
-              <div className={style.newComment}>
-                <TextField
-                  style={{ width: "100%" }}
-                  id="standard-basic"
-                  label="add new comment..."
-                  variant="standard"
-                />
-                <div className={style.newCommentBtn}>
-                  <Button variant="text" style={{ color: "white" }}>
-                    cancel
-                  </Button>
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "white",
-                      border: "none",
-                      color: "black",
-                    }}
-                  >
-                    post new Blog
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ) : null}
-        </div>
-      </div>
+      {blogArray.map((blog) => (
+        <Blog key={blog._id} data={blog} fetchBlogs={getAllblogs} />
+      ))}
     </div>
   );
 };

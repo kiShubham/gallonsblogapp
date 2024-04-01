@@ -32,7 +32,7 @@ const login = async (data) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-    return { token, user };
+    return { token, userId: user._id };
   } catch (error) {
     throw error;
   }
