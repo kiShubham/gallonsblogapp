@@ -1,0 +1,116 @@
+.blog {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  background-color: rgba(245, 245, 244, 0.1);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 20px;
+  width: 90%;
+}
+.blogTxt {
+  width: 100%;
+}
+
+.blogTxt,
+.expandComments,
+.commentSection,
+.commentSection_1 {
+  background-color: rgba(245, 245, 244, 0.3);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 20px;
+}
+.username {
+  font-family: "inter";
+  font-weight: 750;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 30px;
+  line-height: 0.7em;
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  p {
+    justify-self: flex-start;
+  }
+}
+.editDeleteBtn {
+  display: flex;
+  gap: 10px;
+  Button {
+    background-color: white;
+    color: black;
+    width: 100px;
+    height: 40px;
+    padding: 5px 20px;
+    border-radius: 4px;
+    font-family: "inter", sans-serif;
+    font-size: 15px;
+    font-weight: 450;
+    color: black;
+    border: none;
+  }
+  Button:hover {
+    color: white;
+  }
+}
+.expandComments {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px !important;
+}
+.expandComments:hover {
+  background-color: #0ea5e9 !important;
+}
+.commentSection {
+  /* max-width: 100%; */
+  padding: 4px;
+  display: flex;
+  gap: 20px;
+}
+.commentSection_1 {
+  width: 100%;
+}
+.comment_subSection,
+.commentSection_1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-height: 100%;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+}
+.newComment {
+  /* backdrop-filter: blur(15px); */
+  /* border-radius: 16px; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.newCommentBtn {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+}
+.newBlogTxt {
+  font-family: "inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255, 0.8);
+  border: 1px solid grey;
+}

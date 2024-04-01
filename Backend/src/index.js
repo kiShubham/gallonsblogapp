@@ -17,12 +17,12 @@ mongoose
   .catch((error) => console.log("facing error in connecting database", error));
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send("backend server is running ! Hello world");
 });
 
-app.use("/auth", userRoutes);
-app.use("/blogs", blogRoutes);
-app.use("/comments", commentRoutes);
+app.use("/api/auth", userRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/comments", commentRoutes);
 
 const PORT = 5000 || process.env.PORT;
 app.listen(PORT, () =>

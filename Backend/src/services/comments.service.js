@@ -9,7 +9,7 @@ const findUsername = async (id) => {
 const newDoc = async (data, userId) => {
   try {
     const username = await findUsername(userId);
-    console.log({ ...data, username });
+    // console.log({ ...data, username });
     const doc = await Comments.create({ ...data, username });
     return doc;
   } catch (error) {
@@ -18,11 +18,22 @@ const newDoc = async (data, userId) => {
 };
 const getAll = async (blogId) => {
   try {
+    // console.log("in the services");
     const getComments = await Comments.find({ blogId });
+
+    // console.log("getComments");
     return getComments;
   } catch (error) {
     throw error;
   }
 };
-
-module.exports = { newDoc, getAll };
+const deleteAll = async (blogId) => {
+  try {
+    // console.log("in the services");
+    const getComments = await Comments.deleteMany({ blogId });
+    return getComments;
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { newDoc, getAll, deleteAll };
