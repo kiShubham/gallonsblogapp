@@ -14,8 +14,8 @@ const authenticateToken = (req, res, next) => {
     console.log(token);
 
     req.user = user;
-    console.log(user);
-    console.log("middleware");
+    // console.log(user);
+    // console.log("middleware");
 
     next();
   });

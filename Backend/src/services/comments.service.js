@@ -27,5 +27,13 @@ const getAll = async (blogId) => {
     throw error;
   }
 };
-
-module.exports = { newDoc, getAll };
+const deleteAll = async (blogId) => {
+  try {
+    // console.log("in the services");
+    const getComments = await Comments.deleteMany({ blogId });
+    return getComments;
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { newDoc, getAll, deleteAll };

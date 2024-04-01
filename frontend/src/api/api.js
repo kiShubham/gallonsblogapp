@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import axios from "axios";
 
 export const BACKEND_ENDPOINT = "http://localhost:5000"; //https abi nhi kiya backend me
@@ -6,7 +7,7 @@ export const BACKEND_ENDPOINT = "http://localhost:5000"; //https abi nhi kiya ba
 
 export const registerUser = async (data) => {
   try {
-    const res = await axios.post(`${BACKEND_ENDPOINT}/auth/register`, data);
+    const res = await axios.post(`${BACKEND_ENDPOINT}/api/auth/register`, data);
     return res; //{ message: "User registered successfully", userId: user._id }
   } catch (e) {
     console.error(e);
@@ -15,7 +16,7 @@ export const registerUser = async (data) => {
 
 export const loginUser = async (data) => {
   try {
-    const res = await axios.post(`${BACKEND_ENDPOINT}/auth/login`, data);
+    const res = await axios.post(`${BACKEND_ENDPOINT}/api/auth/login`, data);
     return res;
     //  {  message: "user login successfully",
     //   token: check.token,
@@ -39,7 +40,7 @@ export const fetchAllblogs = async () => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await axios.get(`${BACKEND_ENDPOINT}/blogs`, {
+    const res = await axios.get(`${BACKEND_ENDPOINT}/api/blogs`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -53,7 +54,11 @@ export const fetchAllblogs = async () => {
 
 export const postNewBlog = async (data) => {
   try {
-    const res = await axios.post(`${BACKEND_ENDPOINT}/blogs`, data, headerObj);
+    const res = await axios.post(
+      `${BACKEND_ENDPOINT}/api/blogs`,
+      data,
+      headerObj
+    );
     // userid is attaching automatically in backend;
     return res;
   } catch (e) {
@@ -64,7 +69,7 @@ export const postNewBlog = async (data) => {
 export const updateBlog = async (id, updateData) => {
   try {
     const res = await axios.put(
-      `${BACKEND_ENDPOINT}/blogs/${id}`,
+      `${BACKEND_ENDPOINT}/api/blogs/${id}`,
       updateData,
       headerObj
     );
@@ -77,7 +82,7 @@ export const updateBlog = async (id, updateData) => {
 export const deleteBlog = async (id) => {
   try {
     const res = await axios.delete(
-      `${BACKEND_ENDPOINT}/blogs/${id}`,
+      `${BACKEND_ENDPOINT}/api/blogs/${id}`,
       headerObj
     );
     return res;
@@ -91,7 +96,7 @@ export const deleteBlog = async (id) => {
 export const postNewComment = async (data, blogId) => {
   try {
     const res = await axios.post(
-      `${BACKEND_ENDPOINT}/comments/${blogId}`,
+      `${BACKEND_ENDPOINT}/api/comments/${blogId}`,
       data,
       headerObj
     );
@@ -103,11 +108,22 @@ export const postNewComment = async (data, blogId) => {
 
 export const getBlogComment = async (blogId) => {
   try {
-    const res = await axios.get(`${BACKEND_ENDPOINT}/comments/${blogId}`);
+    const res = await axios.get(`${BACKEND_ENDPOINT}/api/comments/${blogId}`);
     return res;
   } catch (error) {
     console.error(error);
   }
 };
 
-//=================================================================================>endpoint
+export const deleteAllComments = async (blogId) => {
+  try {
+    const res = await axios.delete(
+      `${BACKEND_ENDPOINT}/api/comments/${blogId}`,
+      headerObj
+    );
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+//===================================================json web token for authorization===================>endpoint

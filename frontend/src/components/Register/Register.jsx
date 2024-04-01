@@ -76,8 +76,10 @@ const Register = () => {
           variant: "success",
         });
         localStorage.setItem("token", result?.data?.token); // token is changing
-        // localStorage.setItem("uid", result?.data?.userId);
+        localStorage.setItem("uid", result?.data?.userId);
+
         navigate("/blogs");
+        window.location.reload();
       }
     } catch (error) {
       if (error?.response?.data?.message)

@@ -12,7 +12,7 @@ import {
   getBlogComment,
   updateBlog,
   deleteBlog,
-  fetchAllblogs,
+  deleteAllComments,
 } from "../../api/api";
 import { useSnackbar } from "notistack";
 
@@ -25,7 +25,9 @@ const Blog = ({ data, fetchBlogs }) => {
 
   const deleteTheBlog = async (id) => {
     try {
-      await deleteBlog(id);
+      await deleteBlog(id); // delete the blog
+      await deleteAllComments(id); // delete the comments realted to blog
+
       enqueueSnackbar("blog deleted", {
         variant: "success",
       });
@@ -107,17 +109,33 @@ const Blog = ({ data, fetchBlogs }) => {
     setUpdateBlog((prev) => ({ ...prev, bool: true }));
   };
 
+  const authorized = (userId) => {
+    const logInId = localStorage.getItem("uid");
+    if (userId === logInId) return true;
+    // if loginuserid is same as bloguserid then give permession to edit and delete
+    return false;
+  };
+
   return (
     <div className={style.blog} key={data._id}>
       <div className={style.username}>
         <p key={data.userId}>{data.username}</p>
         <div className={style.editDeleteBtn}>
-          <Button variant="contained" onClick={updateBlogBtn}>
-            edit
-          </Button>
-          <Button variant="contained" onClick={() => deleteTheBlog(data._id)}>
-            delete
-          </Button>
+          {authorized(data.userId) ? (
+            <>
+              <Button variant="contained" onClick={updateBlogBtn}>
+                edit
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => deleteTheBlog(data._id)}
+              >
+                delete
+              </Button>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       {updatetheBlog.bool ? (
