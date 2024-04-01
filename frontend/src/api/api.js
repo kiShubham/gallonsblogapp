@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 import axios from "axios";
 
-export const BACKEND_ENDPOINT = "http://localhost:5000"; //https abi nhi kiya backend me
+// export const BACKEND_ENDPOINT = "http://localhost:5000"; //https abi nhi kiya backend me
+export const BACKEND_ENDPOINT = "https://gallonsblogapp.onrender.com";
 
 // ==========================> Auth
 
@@ -18,10 +19,6 @@ export const loginUser = async (data) => {
   try {
     const res = await axios.post(`${BACKEND_ENDPOINT}/api/auth/login`, data);
     return res;
-    //  {  message: "user login successfully",
-    //   token: check.token,
-    //   user: check.getUser,
-    // }
   } catch (e) {
     console.error(e);
   }
