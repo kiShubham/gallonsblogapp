@@ -2,16 +2,13 @@
 const blogService = require("../services/blogs.service");
 
 const newBlog = async (req, res) => {
-  console.log("controller");
   try {
-    console.log("controller try");
     const { text } = req.body;
     const Id = req.user.id;
 
     const blogData = { text: text, userId: Id };
 
     const blog = await blogService.newBlog(blogData);
-    console.log(blog);
     //
     res.status(201).json({ message: "blogs posted succesfully", blog });
   } catch (error) {
