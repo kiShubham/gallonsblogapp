@@ -14,7 +14,7 @@ const register = async (req, res) => {
 };
 const login = async (req, res) => {
   try {
-    console.log("in the controller");
+    // console.log("in the controller");
     const credentials = req.body;
     const check = await authServices.login(credentials);
     // console.log(check);
