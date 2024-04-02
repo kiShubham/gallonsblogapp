@@ -48,7 +48,7 @@ const Register = () => {
       const result = await registerUser(data);
 
       if (result.status === 201) {
-        console.log(result);
+        // console.log(result);
         enqueueSnackbar("user register successfully , now login", {
           variant: "success",
         });

@@ -17,6 +17,7 @@ export const registerUser = async (data) => {
 };
 
 export const loginUser = async (data) => {
+  // console.log("in api");
   try {
     const res = await axios.post(`${BACKEND_ENDPOINT}/api/auth/login`, data);
     return res;
