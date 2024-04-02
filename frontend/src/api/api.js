@@ -2,9 +2,10 @@
 import axios from "axios";
 
 // export const BACKEND_ENDPOINT = "http://localhost:5000"; //https abi nhi kiya backend me
-export const BACKEND_ENDPOINT = "https://gallonsblogapp.onrender.com";
+// export const BACKEND_ENDPOINT = "https://gallonsblogapp.onrender.com";
+export const BACKEND_ENDPOINT = "https://gallonsblogapp-1.onrender.com";
 
-// ==========================> Auth
+// ==========================> Auth ==========================>
 
 export const registerUser = async (data) => {
   try {
@@ -24,7 +25,7 @@ export const loginUser = async (data) => {
   }
 };
 
-//===========================> blogs routes
+//===========================> blogs routes ====================>
 const token = localStorage.getItem("token");
 const headerObj = {
   headers: {
@@ -88,7 +89,7 @@ export const deleteBlog = async (id) => {
   }
 };
 
-//  ===================> comment routes
+//  ===================> comment routes ================================<>
 
 export const postNewComment = async (data, blogId) => {
   try {

@@ -17,7 +17,7 @@ mongoose
   .catch((error) => console.log("facing error in connecting database", error));
 
 app.get("/", (req, res) => {
-  res.send("backend server is running ! Hello world");
+  res.send("backend server is running ! Hello world_1");
 });
 
 app.use("/api/auth", userRoutes);
